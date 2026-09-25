@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.venv/
+
+# The Zindi rules do not allow the challenge data to be hosted online, so these files stay local.
+Train.csv
+Test.csv
+SampleSubmission.csv
+NLP_Primer_twitter_challenge.ipynb
