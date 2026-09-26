@@ -77,7 +77,7 @@ def fetch_train_csv(drive_path: str | Path | None = None) -> Path:
         if not IN_COLAB:
             raise FileNotFoundError(
                 f"{target} not found. Download Train.csv from Zindi and put it "
-                "in data/ (see data/README.md)."
+                "in data/ (see docs/data.md)."
             )
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         if drive_path:

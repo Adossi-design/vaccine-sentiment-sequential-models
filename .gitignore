@@ -15,7 +15,7 @@ venv/
 # Secrets
 .env
 
-# Challenge data: Zindi's rules forbid publishing it (see data/README.md).
+# Challenge data: Zindi's rules forbid publishing it (see docs/data.md).
 # Ignore every CSV except the project's own outputs, plus archives and
 # Zindi's starter notebook (distributed as one of the data files).
 data/*
