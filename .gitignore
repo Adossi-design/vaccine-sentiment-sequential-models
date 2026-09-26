@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets
+.env
+
+# Challenge data: Zindi's rules forbid publishing it (see data/README.md).
+# Ignore every CSV except the project's own outputs, plus archives and
+# Zindi's starter notebook (distributed as one of the data files).
+data/*
+!data/README.md
+*.[cC][sS][vV]
+!splits/train_ids.csv
+!splits/validation_ids.csv
+!results/*_validation_predictions.csv
+!results/experiment_results.csv
+!results/experiments/*_experiments.csv
+*.zip
+*.gz
+NLP_Primer_twitter_challenge.ipynb
