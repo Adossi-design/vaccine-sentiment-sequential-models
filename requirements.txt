@@ -1,7 +1,12 @@
-# Google Colab already has all of these. To run the notebooks on your own computer: pip install -r requirements.txt
-numpy>=1.24
-pandas>=2.0
-scikit-learn>=1.3
-matplotlib>=3.7
-tensorflow>=2.15
-jupyter
+# Python 3.10 to 3.13 (TensorFlow 2.21 has no wheels for 3.14).
+# Lower bounds only. Google Colab already ships newer versions of all of these
+# (Sept 2026: Python 3.13, TensorFlow 2.21, Keras 3.13, scikit-learn 1.6,
+# pandas 2.2), so installing this file there changes nothing. Exact pins
+# would force Colab to reinstall TensorFlow.
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+tensorflow>=2.16
+keras>=3.0
