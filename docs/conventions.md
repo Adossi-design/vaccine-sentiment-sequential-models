@@ -8,7 +8,7 @@ Rules 1 to 4, 6 and 7 are the group's shared rules; 5 and 8 keep runs reproducib
 4. **Log every run.** Call `common.log_experiment(...)` after each experiment with the measured RMSE and what the run changed and why. Keep experiment notes and literature sources in a final *Notes and sources* section of each model notebook.
 5. **Reproducible runs.** Call `common.set_seed()` (seed 42) before building a model. `log_experiment` records library versions and the GPU, because recurrent models can give slightly different results on another GPU type or TensorFlow version. For bitwise-identical reruns on the same GPU, also call `tf.config.experimental.enable_op_determinism()` (slower).
 6. **Keep hard cases, not copies of the data.** Note large-error examples for the error analysis in notebook 05, but never write tweet text to a file outside `data/`: join predictions to `Train.csv` on `tweet_id` at run time, and print only small samples (for example the 10 to 20 largest errors per model).
-7. **Justified preprocessing only.** Keep the raw `safe_text`; apply only the cleaning decided in notebook 01 from the EDA or literature.
+7. **Justified preprocessing only.** Keep the raw `safe_text`; apply only the cleaning decided in notebook 01 from the EDA or literature, which is `prepare_series()` in `src/preprocess.py`.
 8. **Consistent names.** Figures go to `results/figures/<model or eda>_<what>.png` (e.g. `gru_learning_curve.png`); models to `models/simple_rnn.keras`, `models/lstm.keras` and `models/gru.keras`.
 
 ## Repository layout
@@ -19,7 +19,12 @@ Rules 1 to 4, 6 and 7 are the group's shared rules; 5 and 8 keep runs reproducib
 ├── docs/              # these documents
 ├── data/              # Train.csv goes here; never committed (see data.md)
 ├── notebooks/         # 01 to 05
-├── src/common.py      # shared loading, evaluation and experiment-logging helpers
+├── src/
+│   ├── common.py      # shared loading, evaluation and experiment-logging helpers
+│   ├── config.py      # notebook 01: paths, column names, seed
+│   ├── data.py        # notebook 01: record repair and split creation
+│   ├── preprocess.py  # notebook 01: the agreed text cleaning
+│   └── evaluate.py    # notebook 01: RMSE and MAE
 ├── splits/            # train_ids.csv, validation_ids.csv (created by 01)
 ├── results/
 │   ├── <model>_validation_predictions.csv

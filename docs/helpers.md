@@ -3,9 +3,9 @@
 | Function | Purpose |
 |---|---|
 | `fetch_train_csv(drive_path=None)` | makes sure `data/Train.csv` exists (uploads it or copies it from Drive on Colab) and checks it against the official file |
-| `load_train()` | the raw `Train.csv` as a DataFrame |
+| `load_train()` | `Train.csv` as a DataFrame, with notebook 01's repair of the malformed record (`src/data.py`) |
 | `load_split_ids()` | the shared train and validation IDs, checked for duplicates and overlap |
-| `load_train_validation(df=None)` | train and validation rows for the shared split; pass a cleaned `df` if notebook 01 repairs rows |
+| `load_train_validation(df=None)` | train and validation rows for the shared split (`df` defaults to `load_train()`) |
 | `rmse(y_true, y_pred)` | the challenge metric |
 | `save_predictions(model, val_df, y_pred)` | writes `results/<model>_validation_predictions.csv` and prints its RMSE |
 | `log_experiment(...)` | adds or updates one run in `results/experiments/<model>_experiments.csv` |

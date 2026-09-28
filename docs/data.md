@@ -35,7 +35,7 @@ We use only `Train.csv`. `Test.csv` has no labels, and the group is not submitti
 | `label` | sentiment towards vaccination: -1 negative, 0 neutral, 1 positive (treated as a regression target) |
 | `agreement` | share of the three annotators who agreed on the label; analysed in the EDA, not used as a model input |
 
-The raw file contains a malformed record (one tweet split across two lines). `01_data_and_baselines.ipynb` documents how it is handled, and the shared split contains only clean rows.
+The raw file contains a malformed record (one tweet split across two lines). `01_data_and_baselines.ipynb` explains why it is repaired rather than dropped; the repair is `repair_broken_records()` in `src/data.py`, and `common.load_train()` applies it, so every model sees the same 10,000 tweets.
 
 ## Source
 

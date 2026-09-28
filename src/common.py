@@ -7,9 +7,9 @@ evaluated the same way:
 * one prediction-file format (``tweet_id, true_label, predicted_label``);
 * one experiment record per run, with the group's eight required fields.
 
-Text cleaning is deliberately not done here. It is decided and documented in
-``01_data_and_baselines.ipynb``; model notebooks get clean rows by selecting
-the shared split IDs.
+Text cleaning is deliberately not done here. Notebook 01 chose it from the EDA
+and it lives in ``src/preprocess.py``; the repair of the one malformed record
+lives in ``src/data.py`` and :func:`load_train` applies it.
 """
 
 from __future__ import annotations
@@ -28,7 +28,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+from . import data
+
+ROOT =Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 SPLITS_DIR = ROOT / "splits"
 RESULTS_DIR = ROOT / "results"
@@ -103,14 +105,14 @@ def fetch_train_csv(drive_path: str | Path | None = None) -> Path:
 
 
 def load_train(path: str | Path | None = None) -> pd.DataFrame:
-    """Read the raw Zindi ``Train.csv`` exactly as pandas parses it.
+    """Read ``Train.csv`` with its malformed record repaired.
 
-    The raw file contains a malformed record, so do not train on this frame
-    directly: pass it to :func:`load_train_validation` (or apply the
-    notebook 01 cleaning first).
+    One tweet in the raw file is split across two lines. Notebook 01 repairs
+    it rather than dropping it (``src/data.py``), and the shared split keeps
+    that tweet, so every model loads the file through the same repair.
     """
     path = Path(path) if path else fetch_train_csv()
-    return pd.read_csv(path, dtype={"tweet_id": str})
+    return data.load_train(path, verbose=False)
 
 
 def load_split_ids() -> tuple[pd.Series, pd.Series]:
@@ -160,8 +162,7 @@ def select_rows(df: pd.DataFrame, ids: pd.Series) -> pd.DataFrame:
 def load_train_validation(df: pd.DataFrame | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Return ``(train_df, validation_df)`` for the shared split.
 
-    ``df`` defaults to the raw ``Train.csv``; pass a cleaned frame if
-    notebook 01 repairs rows instead of dropping them.
+    ``df`` defaults to :func:`load_train`, the repaired ``Train.csv``.
     """
     df = load_train() if df is None else df
     train_ids, val_ids = load_split_ids()
