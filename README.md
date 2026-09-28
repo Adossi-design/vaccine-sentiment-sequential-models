@@ -1,50 +1,29 @@
-# Vaccine Sentiment Analysis with Sequential NLP Models
+# Vaccine Sentiment Analysis Using Sequential NLP Models
 
-This repository contains our group project for Formative Assignment 2, *Research-Informed Sequential Models for NLP and Language Technologies*. Tweets about vaccines show how people feel about vaccination so being able to tell automatically whether a tweet is against vaccines, neutral or in favour of them could help people who follow public opinion on this topic. Our aim is to find out how well sequential models can do this task and to use the evidence from our own experiments to explain where each approach works well and where it struggles.
+Group project for Formative Assignment 2, *Research-Informed Sequential Models for NLP and Language Technologies* (Machine Learning Techniques I, ALU, September 2026 term).
 
-## The data
+We predict the sentiment of tweets towards vaccination (-1 negative, 0 neutral, 1 positive, treated as regression and scored by RMSE) and compare two TF-IDF baselines with three recurrent neural networks that read each tweet as a sequence of tokens.
 
-We use the dataset from the Zindi challenge [Sentiment Analysis: To Vaccinate or Not to Vaccinate](https://zindi.africa/competitions/sentiment-analysis-to-vaccinate-or-not-to-vaccinate-its-not-a-question/data). Only `Train.csv` comes with labels so we use it for both training and validation, and each tweet in it has a `label` of -1 (negative, anti-vaccine), 0 (neutral) or 1 (positive, pro-vaccine). Because these labels have a natural order and the official starter notebook treats them as numbers, we follow the same approach and treat the task as regression with RMSE as the main score.
+| Notebook | Approach | Owner |
+|---|---|---|
+| `01_data_and_baselines.ipynb` | EDA, shared split, TF-IDF + Ridge, TF-IDF + SVR | Adossi Fred William |
+| `02_simple_rnn.ipynb` | Simple RNN | Honourgod Kilechukwu Levison |
+| `03_lstm.ipynb` | LSTM | Parfait Christian Henry UHIRIVE |
+| `04_gru.ipynb` | GRU | Serein Byiringiro Shima |
+| `05_model_comparison_and_error_analysis.ipynb` | comparison and error analysis | whole group |
 
-## Models and who worked on them
+Run 01 first (it creates the shared split), then 02 to 04 in any order, then 05.
 
-We compare five approaches so that the sequential models can be judged against simpler methods rather than on their own. The two TF-IDF baselines ignore word order and show how far we can get with word counts alone while the Simple RNN, LSTM and GRU read each tweet as a sequence, which lets us test whether word order and memory actually improve the results on this data.
+## Quick start
 
-| # | Approach | Group member | Notebook |
-|---|---|---|---|
-| 1 | TF-IDF + Ridge regression (baseline) | Adossi Fred William | `01_data_and_baselines.ipynb` |
-| 2 | TF-IDF + Support Vector Regression (baseline) | Adossi Fred William | `01_data_and_baselines.ipynb` |
-| 3 | Simple RNN | Honourgod Kilechukwu Levison | `02_simple_rnn.ipynb` |
-| 4 | LSTM | Parfait Christian Henry UHIRIVE | `03_lstm.ipynb` |
-| 5 | GRU | Serein Byiringiro Shima | `04_gru.ipynb` |
+Open a notebook in Colab at `https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/<notebook>.ipynb`, run the first cell, and upload `Train.csv` when asked. The data is not in this repository; [docs/data.md](docs/data.md) explains how to get it.
 
-Once all five models are trained the last notebook, `05_model_comparison_and_error_analysis.ipynb`, brings their results together so that we can compare them side by side and study the tweets they get wrong.
+## Documentation
 
-## What is in the repository
-
-The notebooks contain the analysis and the experiments while the `src/` folder holds the code that all of them share so that every model loads, cleans, splits and scores the data in exactly the same way.
-
-```
-README.md
-requirements.txt
-Train.csv                      not in the repository, download it from Zindi and place it here
-notebooks/                     notebooks 01 to 05 (see the table above)
-src/                           code shared by all the notebooks
-  config.py                    file paths, column names and the random seed
-  data.py                      loads Train.csv, fixes the broken record, makes the split
-  preprocess.py                the text cleaning that every model uses
-  evaluate.py                  RMSE and MAE, prediction files and the experiment log
-splits/                        train_ids.csv and validation_ids.csv, used by every model
-results/                       prediction files and experiment_results.csv
-results/figures/               the figures we use in the report
-models/                        saved models (optional)
-report/                        the final report
-```
-
-## How to run the notebooks
-
-Because the Zindi rules do not allow the challenge data to be hosted online, `Train.csv` is not included in this repository and each person has to download it from the challenge page linked above before running anything. The notebooks are written to run on Google Colab with very little setup so opening a notebook from this repository and running all the cells is enough: the first cell clones the repository and, if `Train.csv` is missing, asks you to upload it. To run them on your own computer instead install the packages with `pip install -r requirements.txt` and put `Train.csv` in the main folder. In both cases notebook `01` has to be run first because it creates the shared split that all the other notebooks load.
-
-## Rules we all follow
-
-Comparing five models only makes sense if the differences in their results come from the models themselves and not from the way each person prepared the data. For this reason every model loads the data with `load_train()` and the split with `load_split(df)` from `src/data.py` and cleans the text with `prepare_series()` from `src/preprocess.py` using the default settings. To avoid leaking information from the validation set, tokenizers, vocabularies and TF-IDF are always fitted on the training split only. Every model is then evaluated in the same way, reporting RMSE as the main score together with MAE on the validation split, saving its predictions with `save_validation_predictions()` and recording each experiment with `log_experiment()` from `src/evaluate.py` so that all the results can later be compared in one place.
+| Document | Contents |
+|---|---|
+| [docs/setup.md](docs/setup.md) | running on Colab and locally, the setup cell |
+| [docs/data.md](docs/data.md) | getting `Train.csv`, data rules, columns, source |
+| [docs/conventions.md](docs/conventions.md) | group rules, repository layout, file formats, experiment record |
+| [docs/helpers.md](docs/helpers.md) | `src/common.py` reference |
+| [docs/keras3-notes.md](docs/keras3-notes.md) | Keras 3 notes for the recurrent models |
