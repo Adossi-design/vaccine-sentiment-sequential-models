@@ -1,0 +1,8 @@
+{
+  "standardize": "none (prepare_series already cleans the text)",
+  "split": "whitespace",
+  "max_tokens": 5666,
+  "max_len": 28,
+  "adapted_on": "shared training split (splits/train_ids.csv)",
+  "preprocessing": "prepare_series() from src/preprocess.py: the shared cleaning chosen in notebook 01 from the EDA"
+}
