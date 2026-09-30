@@ -8,7 +8,7 @@ We predict the sentiment of tweets towards vaccination (-1 negative, 0 neutral, 
 |---|---|---|
 | `01_data_and_baselines.ipynb` | EDA, shared split, TF-IDF + Ridge, TF-IDF + SVR | Adossi Fred William |
 | `02_simple_rnn.ipynb` | Simple RNN | Honourgod Kilechukwu Levison |
-| `03_lstm.ipynb` | LSTM | Parfait Christian Henry UHIRIVE |
+| `03_lstm.ipynb` | LSTM | Parfait Christian Henry UHIRIWE |
 | `04_gru.ipynb` | GRU | Serein Byiringiro Shima |
 | `05_model_comparison_and_error_analysis.ipynb` | comparison and error analysis | whole group |
 
