@@ -11,7 +11,7 @@
 | `log_experiment(...)` | adds or updates one run in `results/experiments/<model>_experiments.csv` |
 | `merge_experiment_logs()` | combines all logs into `results/experiment_results.csv` |
 | `set_seed(seed=42)` | seeds Python, NumPy and Keras |
-| `environment_summary()` / `print_environment()` | Python and library versions plus GPU name, for the record |
+| `environment_summary()` / `print_environment()` | Python and library versions plus the GPU TensorFlow can use ("none" when it runs on the CPU), for the record |
 
 Paths are available as `common.ROOT`, `DATA_DIR`, `SPLITS_DIR`, `RESULTS_DIR`, `FIGURES_DIR`, `EXPERIMENTS_DIR` and `MODELS_DIR`.
 
