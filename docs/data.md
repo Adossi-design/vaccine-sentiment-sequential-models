@@ -24,7 +24,7 @@ We use only `Train.csv`. `Test.csv` has no labels, and the group is not submitti
 
 - `splits/`: tweet IDs only.
 - `results/<model>_validation_predictions.csv`: tweet ID, true label and prediction for each validation tweet, as required for comparing the five models.
-- Notebook outputs: a few example tweets in the EDA and error analysis. Print small samples only; never display or save whole data frames.
+- Notebook outputs: tweet IDs, labels and predictions, never tweet text. A committed notebook publishes its saved outputs, so display examples by `tweet_id` (drop `safe_text` before displaying) and paraphrase them in markdown. Before pushing, check that no saved output contains `<user>` or `<url>`.
 
 ## Columns
 
