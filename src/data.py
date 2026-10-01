@@ -1,27 +1,16 @@
 """This module loads Train.csv, repairs its broken record and creates the shared train/validation split."""
 import re
-import shutil
-import sys
 
 import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold
 
-from .config import (AGREEMENT_COL, ID_COL, SEED, SPLITS_DIR, TARGET_COL,
-                     TEXT_COL, TRAIN_CSV)
+from .config import AGREEMENT_COL, ID_COL, SEED, SPLITS_DIR, TARGET_COL, TEXT_COL
 
 
 def ensure_train_csv():
-    """Return the path to Train.csv asking for an upload in Google Colab if the file is missing."""
-    if TRAIN_CSV.exists():
-        return TRAIN_CSV
-    if "google.colab" in sys.modules:
-        from google.colab import files  # This module only exists when the code runs on Google Colab.
-        print("Train.csv not found - please upload it.")
-        for name in files.upload():
-            if name.lower() == "train.csv":
-                shutil.move(name, TRAIN_CSV)
-                return TRAIN_CSV
-    raise FileNotFoundError(f"Place the challenge file Train.csv at {TRAIN_CSV}")
+    """Return the path to Train.csv after checking it is the official file."""
+    from .common import fetch_train_csv  # The import is placed here because common.py imports this module.
+    return fetch_train_csv()
 
 
 def repair_broken_records(df):
