@@ -313,8 +313,14 @@ def set_seed(seed: int = SEED) -> None:
 
 
 def _gpu_name() -> str | None:
-    if not shutil.which("nvidia-smi"):
+    # Report a GPU only if TensorFlow can use it: on native Windows nvidia-smi
+    # sees the card, but TensorFlow >= 2.11 still trains on the CPU. Notebooks
+    # that never import TensorFlow (the TF-IDF baselines) use no GPU at all.
+    tf = sys.modules.get("tensorflow")
+    if tf is None or not tf.config.list_physical_devices("GPU"):
         return None
+    if not shutil.which("nvidia-smi"):
+        return "available"
     try:
         out = subprocess.run(
             ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
