@@ -25,6 +25,7 @@ data/*
 !splits/validation_ids.csv
 !results/*_validation_predictions.csv
 !results/experiment_results.csv
+!results/model_comparison.csv
 !results/experiments/*_experiments.csv
 *.zip
 *.gz
