@@ -30,8 +30,11 @@ Rules 1 to 4, 6 and 7 are the group's shared rules; 5 and 8 keep runs reproducib
 │   ├── <model>_validation_predictions.csv
 │   ├── experiments/   # one experiment log per model
 │   ├── experiment_results.csv
+│   ├── model_comparison.csv       # notebook 05
+│   ├── learning_curves.csv        # notebook 05, section 7
+│   ├── followup_experiments.csv   # notebook 05, section 7 (follow-up checks)
 │   └── figures/
-├── models/            # saved .keras models
+├── models/            # saved .keras models, *_vectorizer.json, gru_glove_100d.npz
 └── report/
 ```
 
@@ -54,8 +57,13 @@ Created once in `notebooks/01_data_and_baselines.ipynb`. All five models use exa
 |---|---|---|
 | `results/<model>_validation_predictions.csv` | each model notebook, with `common.save_predictions` | columns `tweet_id, true_label, predicted_label`, one row per validation tweet |
 | `results/experiments/<model>_experiments.csv` | each model notebook, with `common.log_experiment` | one row per run |
-| `results/experiment_results.csv` | `common.merge_experiment_logs()`, called at the end of notebook 01 and again in notebook 05 | every run from every model; never edit it by hand |
+| `results/experiment_results.csv` | `common.merge_experiment_logs()`, called in notebook 01 (section 14), notebook 04 (section 13) and notebook 05 (section 3) | every run from every model; never edit it by hand |
+| `results/model_comparison.csv` | notebook 05 | one row per approach: validation RMSE with its 95% interval, MAE, seed mean and spread, rounded-class metrics and AUCs |
+| `results/learning_curves.csv` | notebook 05, section 7, by retraining the three saved recurrent models | training and validation RMSE per epoch for each saved recurrent model |
+| `results/followup_experiments.csv` | notebook 05, section 7 (follow-up runs) | one row per run, with the same columns as the experiment record; kept out of `experiment_results.csv` because these runs are checks, not tuning runs |
 | `results/figures/` | all notebooks | PNG figures |
+| `models/*_vectorizer.json` | notebooks 02, 03 and 04, next to each saved model | the settings that rebuild its `TextVectorization` (standardisation, tokenisation, `max_tokens`, `max_len`, and which data split it was adapted on), not the vocabulary |
+| `models/gru_glove_100d.npz` | notebook 04, round 4 | the GRU's vocabulary with the 100-dimensional GloVe Twitter vector of each token (zeros where GloVe has none) and how each was matched; see [keras3-notes.md](keras3-notes.md) |
 
 Each model keeps its own experiment log so that teammates never edit the same file. Logging an existing `run_id` again replaces that row, so re-running a notebook does not duplicate runs.
 
