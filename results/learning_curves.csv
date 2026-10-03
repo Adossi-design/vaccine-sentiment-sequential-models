@@ -1,14 +1,14 @@
 model,run_id,epoch,train_rmse,val_rmse,source
-rnn,rnn-04,1,0.6242,0.5855,"retrained rnn-04 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-rnn,rnn-04,2,0.5208,0.5928,"retrained rnn-04 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-rnn,rnn-04,3,0.4193,0.6139,"retrained rnn-04 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-rnn,rnn-04,4,0.3638,0.6175,"retrained rnn-04 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-lstm,lstm-final,1,0.6005,0.5778,"read from results/figures/lstm_learning_curve.png (lstm-final, Colab GPU run; histories were not saved, accuracy about 0.0003)"
-lstm,lstm-final,2,0.5183,0.5894,"read from results/figures/lstm_learning_curve.png (lstm-final, Colab GPU run; histories were not saved, accuracy about 0.0003)"
-lstm,lstm-final,3,0.4532,0.6206,"read from results/figures/lstm_learning_curve.png (lstm-final, Colab GPU run; histories were not saved, accuracy about 0.0003)"
-lstm,lstm-final,4,0.3919,0.6640,"read from results/figures/lstm_learning_curve.png (lstm-final, Colab GPU run; histories were not saved, accuracy about 0.0003)"
-gru,gru-09,1,0.6261,0.5938,"retrained gru-09 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-gru,gru-09,2,0.5508,0.5769,"retrained gru-09 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-gru,gru-09,3,0.5008,0.5876,"retrained gru-09 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-gru,gru-09,4,0.4640,0.5944,"retrained gru-09 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
-gru,gru-09,5,0.4316,0.6067,"retrained gru-09 (seed 42, on CPU with the same library versions; validation RMSE matches the log exactly)"
+rnn,rnn-04,1,0.6242,0.5855,CPU retrain of rnn-04 in notebook 05 (seed 42); validation RMSE matches the log
+rnn,rnn-04,2,0.5208,0.5928,CPU retrain of rnn-04 in notebook 05 (seed 42); validation RMSE matches the log
+rnn,rnn-04,3,0.4193,0.6139,CPU retrain of rnn-04 in notebook 05 (seed 42); validation RMSE matches the log
+rnn,rnn-04,4,0.3638,0.6175,CPU retrain of rnn-04 in notebook 05 (seed 42); validation RMSE matches the log
+lstm,lstm-final,1,0.6004,0.5780,CPU retrain of lstm-final in notebook 05 (seed 42); validation RMSE matches the log although the logged run used a Colab T4 GPU and TensorFlow 2.20
+lstm,lstm-final,2,0.5182,0.5891,CPU retrain of lstm-final in notebook 05 (seed 42); validation RMSE matches the log although the logged run used a Colab T4 GPU and TensorFlow 2.20
+lstm,lstm-final,3,0.4531,0.6205,CPU retrain of lstm-final in notebook 05 (seed 42); validation RMSE matches the log although the logged run used a Colab T4 GPU and TensorFlow 2.20
+lstm,lstm-final,4,0.3921,0.6638,CPU retrain of lstm-final in notebook 05 (seed 42); validation RMSE matches the log although the logged run used a Colab T4 GPU and TensorFlow 2.20
+gru,gru-09,1,0.6261,0.5938,CPU retrain of gru-09 in notebook 05 (seed 42); validation RMSE matches the log
+gru,gru-09,2,0.5508,0.5769,CPU retrain of gru-09 in notebook 05 (seed 42); validation RMSE matches the log
+gru,gru-09,3,0.5008,0.5876,CPU retrain of gru-09 in notebook 05 (seed 42); validation RMSE matches the log
+gru,gru-09,4,0.4640,0.5944,CPU retrain of gru-09 in notebook 05 (seed 42); validation RMSE matches the log
+gru,gru-09,5,0.4316,0.6067,CPU retrain of gru-09 in notebook 05 (seed 42); validation RMSE matches the log

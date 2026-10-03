@@ -5,7 +5,7 @@
 1. Open a notebook directly from GitHub, for example
    `https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/04_gru.ipynb`
    (or in Colab: *File → Open notebook → GitHub*).
-2. Choose a CPU or GPU runtime (*Runtime → Change runtime type*). A T4 GPU speeds up the recurrent models.
+2. Choose a CPU or GPU runtime (*Runtime → Change runtime type*). A T4 GPU trains the recurrent models faster, but every logged run except the LSTM's was made on CPU, and a GPU can change the last digits of a recurrent model's results.
 3. Run the setup cell below. It is the first code cell of every notebook.
 4. When asked, upload `Train.csv`, or load it from Drive (see [data.md](data.md)).
 
@@ -38,6 +38,8 @@ common.set_seed()
 The cell clones `main` (or pulls the latest `main` if the clone already exists), installs `requirements.txt` (a no-op on Colab, whose preinstalled versions already satisfy it) and imports the shared helpers.
 
 Files a notebook writes on Colab (split IDs, predictions, experiment logs, figures, models) disappear when the session ends. Download them and commit them from a local clone. Notebooks 02 to 05 need `splits/` on `main` before they can run.
+
+Notebook 04's round 4 starts the GRU's embedding from GloVe Twitter vectors. It reads the vectors for the GRU's vocabulary from `models/gru_glove_100d.npz`, which the clone includes, and downloads the 1.5 GB GloVe archive into `data/` only if that file is missing or no longer matches the vocabulary (see [data/README.md](../data/README.md)).
 
 ## Local
 
