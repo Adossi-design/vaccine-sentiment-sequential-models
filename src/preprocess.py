@@ -3,7 +3,7 @@ import html
 import re
 from dataclasses import asdict, dataclass
 
-# These Unicode ranges cover the emojis found in the tweets so that each emoji becomes its own token.
+# These Unicode ranges cover most emojis in the tweets so that each emoji becomes its own token; flags and symbols outside them, such as the star, are dropped.
 EMOJI_CLASS = "\U0001F300-\U0001FAFF☀-➿"
 EMOJI_RE = re.compile(f"[{EMOJI_CLASS}]")
 
@@ -11,7 +11,7 @@ _TOKEN_RE = re.compile(
     r"<url>|<user>"              # Link and username placeholders are kept as single tokens.
     r"|#\w+"                     # Hashtags are matched whole and later handled by TextConfig.hashtags.
     r"|\w+(?:'\w+)?"             # Words are matched with contractions such as isn't kept together.
-    "|[!?…]"                # Exclamation marks, question marks and ellipses are kept as tokens.
+    "|[!?…]"                # Exclamation marks, question marks and the one-character ellipsis are kept as tokens; a plain "..." is dropped.
     f"|[{EMOJI_CLASS}]"
 )
 _ELONGATION_RE = re.compile(r"([^\W\d_])\1{2,}")   # Only repeated letters are shortened so "noooooo" becomes "noo" while numbers stay unchanged.
@@ -24,7 +24,7 @@ class TextConfig:
 
     lowercase: bool = True           # Lowercasing makes "Vaccine", "VACCINE" and "vaccine" the same token.
     hashtags: str = "keep"           # The value "keep" produces '#vaccineswork' and the value "strip" produces 'vaccineswork'.
-    keep_punct: bool = True          # This setting keeps exclamation marks, question marks and ellipses as tokens.
+    keep_punct: bool = True          # This setting keeps exclamation marks, question marks and the one-character ellipsis as tokens.
     keep_emoji: bool = True
     squeeze_elongation: bool = True
 

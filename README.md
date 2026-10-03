@@ -4,6 +4,8 @@ Group project for Formative Assignment 2, *Research-Informed Sequential Models f
 
 We predict the sentiment of tweets towards vaccination (-1 negative, 0 neutral, 1 positive, treated as regression and scored by RMSE) and compare two TF-IDF baselines with three recurrent neural networks that read each tweet as a sequence of tokens.
 
+The brief asks for five approaches, at least three of them neural sequential models (sections 2 and 3), but it also refers to "the three approaches" (sections 2 and 3), "the three selected approaches" (report Methodology) and "the three models selected" (demo video). Our five (two TF-IDF baselines and three recurrent networks) satisfy both readings: the three recurrent networks are the sequential approaches, and the baselines are the comparison the brief allows.
+
 | Notebook | Approach | Owner |
 |---|---|---|
 | `01_data_and_baselines.ipynb` | EDA, shared split, TF-IDF + Ridge, TF-IDF + SVR | Adossi Fred William |
@@ -12,7 +14,7 @@ We predict the sentiment of tweets towards vaccination (-1 negative, 0 neutral, 
 | `04_gru.ipynb` | GRU | Serein Byiringiro Shima |
 | `05_model_comparison_and_error_analysis.ipynb` | comparison and error analysis | whole group |
 
-Run 01 first (it creates the shared split), then 02 to 04 in any order, then 05.
+Run the notebooks in order, 01 to 05. Notebook 01 creates the shared split, and notebook 03 reads two files that notebook 02 writes: `models/simple_rnn_vectorizer.json` (to reuse its vocabulary size and sequence length) and `results/rnn_validation_predictions.csv` (for its comparison with the Simple RNN). Notebooks 02 and 04 also compare against the other models' prediction files when they exist; these are committed, so their comparison tables assume all five files are present.
 
 ## Quick start
 
