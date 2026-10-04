@@ -25,7 +25,7 @@ train_df, val_df = common.load_train_validation()
 common.save_predictions("gru", val_df, y_pred)
 common.log_experiment(
     run_id="gru-01",
-    owner="Serein Byiringiro Shima",
+    owner="Shima Byiringiro Serein",
     model="gru",
     approach="Embedding -> GRU -> Dense(1)",
     input_representation="token IDs from TextVectorization",

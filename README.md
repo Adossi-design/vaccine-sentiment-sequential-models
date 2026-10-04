@@ -10,7 +10,7 @@ The brief asks for five approaches, at least three of them neural sequential mod
 
 - Report: [report/Group18_report.pdf](report/Group18_report.pdf)
 - Code: this repository, <https://github.com/Adossi-design/vaccine-sentiment-sequential-models>
-- Demo video: the link is added here before submission.
+- Demo video: <https://youtu.be/CSpG5dTFAP4>
 - Contribution tracker: the link is added here before submission.
 
 ## Results
@@ -37,7 +37,7 @@ Each notebook name opens it in Colab.
 | [`01_data_and_baselines.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/01_data_and_baselines.ipynb) | EDA, shared split, TF-IDF + Ridge, TF-IDF + SVR | Adossi Fred William |
 | [`02_simple_rnn.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/02_simple_rnn.ipynb) | Simple RNN | Honourgod Kilechukwu Levison |
 | [`03_lstm.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/03_lstm.ipynb) | LSTM | Parfait Christian Henry UHIRIWE |
-| [`04_gru.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/04_gru.ipynb) | GRU, with a fourth round that starts its embedding from GloVe Twitter vectors | Serein Byiringiro Shima |
+| [`04_gru.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/04_gru.ipynb) | GRU, with a fourth round that starts its embedding from GloVe Twitter vectors | Shima Byiringiro Serein |
 | [`05_model_comparison_and_error_analysis.ipynb`](https://colab.research.google.com/github/Adossi-design/vaccine-sentiment-sequential-models/blob/main/notebooks/05_model_comparison_and_error_analysis.ipynb) | comparison and error analysis, plus follow-up checks: learning-curve retrains, the three recurrent cells on identical settings, and a cleaning ablation | whole group |
 
 Run the notebooks in order, 01 to 05. Notebook 01 creates the shared split, and notebook 03 reads two files that notebook 02 writes: `models/simple_rnn_vectorizer.json` (to reuse its vocabulary size and sequence length) and `results/rnn_validation_predictions.csv` (for its comparison with the Simple RNN). Notebooks 02 and 04 also compare against the other models' prediction files when they exist; these are committed, so their comparison tables assume all five files are present.
