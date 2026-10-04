@@ -11,7 +11,7 @@ The brief asks for five approaches, at least three of them neural sequential mod
 - Report: [report/Group18_report.pdf](report/Group18_report.pdf)
 - Code: this repository, <https://github.com/Adossi-design/vaccine-sentiment-sequential-models>
 - Demo video: <https://youtu.be/CSpG5dTFAP4>
-- Contribution tracker: the link is added here before submission.
+- Contribution tracker: <https://docs.google.com/spreadsheets/d/1ehhkG6LZAxyykAa0Yja0phPsCzfBddlc3NstiYy4bKg/edit?gid=0#gid=0>
 
 ## Results
 
